@@ -1,0 +1,173 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Article {
+  id   String @id @default(uuid())
+  slug String
+  name String
+  text String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wiki   Wiki   @relation(fields: [wikiId], references: [id])
+  wikiId String
+
+  revisions ArticleRevision[]
+
+  @@unique([slug, wikiId])
+}
+
+model ArticleRevision {
+  id   Int    @id @default(autoincrement())
+  slug String
+  name String
+  text String
+
+  reasonChangedFrom String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  article   Article @relation(fields: [articleId], references: [id])
+  articleId String
+}
+
+model Ban {
+  id     String  @id @default(uuid())
+  reason String?
+
+  user   User   @relation(name: "ban_user", fields: [userId], references: [id])
+  userId String
+
+  wiki   Wiki?   @relation(fields: [wikiId], references: [id])
+  wikiId String?
+
+  givenByUser   User?   @relation(name: "ban_givenbyuser", fields: [givenByUserId], references: [id])
+  givenByUserId String?
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  expiresAt DateTime?
+
+  @@unique([userId, wikiId])
+}
+
+model Comment {
+  id   String @id @default(uuid())
+  text String
+
+  attacheId   String
+  attacheKind CommentAttacheKind
+
+  user   User?   @relation(fields: [userId], references: [id])
+  userId String?
+
+  parent   Comment?  @relation(name: "comment_hierarchy", fields: [parentId], references: [id])
+  parentId String?
+  children Comment[] @relation(name: "comment_hierarchy")
+}
+
+enum CommentAttacheKind {
+  ARTICLE
+}
+
+model Role {
+  id   String   @id @default(uuid())
+  slug String
+  tier RoleTier
+
+  singularName String
+  pluralName   String
+
+  color String?
+  css   String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wiki   Wiki?   @relation(fields: [wikiId], references: [id])
+  wikiId String?
+
+  memberships RoleMembership[]
+}
+
+model RoleMembership {
+  user   User   @relation(name: "rolemembership_user", fields: [userId], references: [id])
+  userId String
+
+  role   Role   @relation(fields: [roleId], references: [id])
+  roleId String
+
+  givenByUser   User?   @relation(name: "rolemembership_givenbyuser", fields: [givenByUserId], references: [id])
+  givenByUserId String?
+
+  job String?
+
+  @@id([userId, roleId])
+}
+
+enum RoleTier {
+  ADMIN
+}
+
+model Session {
+  id String @id @default(uuid())
+
+  ipAddr    String?
+  userAgent String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+}
+
+model Tome {
+  id    TomeUnitId @id @default(UNIT)
+  title String
+}
+
+enum TomeUnitId {
+  UNIT
+}
+
+model User {
+  id           String @id @default(uuid())
+  username     String @unique
+  email        String @unique
+  passwordHash String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bans      Ban[] @relation(name: "ban_user")
+  givenBans Ban[] @relation(name: "ban_givenbyuser")
+
+  comments Comment[]
+
+  memberships      RoleMembership[] @relation(name: "rolemembership_user")
+  givenMemberships RoleMembership[] @relation(name: "rolemembership_givenbyuser")
+
+  sessions Session[]
+}
+
+model Wiki {
+  id   String @id @default(uuid())
+  slug String @unique
+  name String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+  bans     Ban[]
+  roles    Role[]
+}
