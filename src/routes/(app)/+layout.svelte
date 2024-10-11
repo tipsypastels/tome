@@ -13,12 +13,8 @@
 
 <Head />
 
-{#if $page.data.title}
-  <h1>
-    {$page.data.title}
-  </h1>
-{/if}
-
-<main class="text-red-500">
-  {@render children()}
-</main>
+<div class="mx-auto flex h-screen max-h-full w-[1000px] max-w-full flex-col pt-32">
+  <main class="grow border-2 border-b-0 border-white bg-zinc-950 p-8 shadow-lg">
+    {@render children()}
+  </main>
+</div>
