@@ -1,4 +1,5 @@
 import type { Tome, User } from "@prisma/client";
+import type { Snippet } from "svelte";
 
 declare global {
   namespace App {
@@ -11,7 +12,9 @@ declare global {
       tome: Tome;
       me?: User;
       title?: string;
-      baseTitle?: string;
+      controls?: Snippet;
+      scopes?: { name: string; url: string }[];
+      headTitleAlwaysUnscoped?: boolean;
     }
     // interface PageState {}
     // interface Platform {}

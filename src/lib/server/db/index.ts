@@ -8,4 +8,12 @@ export const db = new PrismaClient().$extends({
       },
     },
   },
+  result: {
+    wiki: {
+      url: {
+        needs: { slug: true },
+        compute: ({ slug }) => `/-/${slug}`,
+      },
+    },
+  },
 });

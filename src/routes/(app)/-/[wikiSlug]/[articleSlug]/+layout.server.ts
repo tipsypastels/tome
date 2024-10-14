@@ -11,5 +11,5 @@ export const load: LayoutServerLoad = async ({ params, parent }) => {
     error(404);
   }
 
-  return { article, title: article.name, baseTitle: wiki.name };
+  return { article, title: article.name, scopes: [wiki] };
 };
