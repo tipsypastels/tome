@@ -5,3 +5,4 @@
 </script>
 
 foo
+<a href="/gstf/thorne">thorne</a>

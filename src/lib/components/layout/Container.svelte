@@ -4,7 +4,7 @@
   import Crumbs from "./private/Crumbs.svelte";
 
   let { children }: ChildrenProps = $props();
-  let crumbs = $page.data.crumbs;
+  let crumbs = $derived($page.data.crumbs);
 </script>
 
 <div class="mx-auto flex h-screen max-h-full w-[1000px] max-w-full flex-col pt-32">

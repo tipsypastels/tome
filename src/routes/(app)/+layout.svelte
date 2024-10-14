@@ -7,6 +7,7 @@
 </script>
 
 <Head />
+
 <Container>
   {@render children()}
 </Container>
