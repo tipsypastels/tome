@@ -1,4 +1,4 @@
-import type { Tome, User } from "@prisma/client";
+import type { Tome, User, Wiki } from "@prisma/client";
 import type { Crumb } from "$lib/crumb";
 import type { Snippet } from "svelte";
 
@@ -7,6 +7,7 @@ declare global {
     // interface Error {}
     interface Locals {
       tome: Tome;
+      onlyWiki?: Wiki;
       me?: User;
     }
     interface PageData {

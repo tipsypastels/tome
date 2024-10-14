@@ -20,6 +20,15 @@ const setupHandle: Handle = async ({ event, resolve }) => {
   return await resolve(event);
 };
 
+const onlyWikiHandle: Handle = async ({ event, resolve }) => {
+  const count = await db.wiki.count();
+  if (count === 1) {
+    const wiki = await db.wiki.findFirstOrThrow();
+    event.locals.onlyWiki = wiki;
+  }
+  return await resolve(event);
+};
+
 const authenticateHandle: Handle = async ({ event, resolve }) => {
   const me = await authenticate(event.cookies);
   if (me) {
@@ -28,4 +37,4 @@ const authenticateHandle: Handle = async ({ event, resolve }) => {
   return await resolve(event);
 };
 
-export const handle = sequence(setupHandle, authenticateHandle);
+export const handle = sequence(setupHandle, onlyWikiHandle, authenticateHandle);
