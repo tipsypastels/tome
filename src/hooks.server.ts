@@ -1,3 +1,4 @@
+import { SEE_OTHER } from "$lib/http/status";
 import { db } from "$lib/server/db";
 import { authenticate } from "$lib/server/ops/user/auth";
 import type { Handle } from "@sveltejs/kit";
@@ -9,10 +10,10 @@ const setupHandle: Handle = async ({ event, resolve }) => {
   const tome = await db.tome.find();
 
   if (path === setupPath && tome) {
-    return Response.redirect(new URL("/", event.url), 303);
+    return Response.redirect(new URL("/", event.url), SEE_OTHER);
   }
   if (path !== setupPath && !tome) {
-    return Response.redirect(new URL(setupPath, event.url), 303);
+    return Response.redirect(new URL(setupPath, event.url), SEE_OTHER);
   }
   if (tome) {
     event.locals.tome = tome;

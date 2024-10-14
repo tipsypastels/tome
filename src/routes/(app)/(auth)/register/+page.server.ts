@@ -5,6 +5,7 @@ import { zod } from "sveltekit-superforms/adapters";
 import { register } from "$lib/server/ops/user/auth";
 import { caseErr } from "$lib/server/ops/result";
 import { fail, redirect } from "@sveltejs/kit";
+import { BAD_REQUEST, MOVED_TEMPORARILY, SEE_OTHER } from "$lib/http/status";
 
 const Schema = z.object({
   username: z.string().min(1),
@@ -14,7 +15,7 @@ const Schema = z.object({
 
 export const load: PageServerLoad = async ({ locals }) => {
   if (locals.me) {
-    redirect(302, "/");
+    redirect(MOVED_TEMPORARILY, "/");
   }
 
   const form = await superValidate(zod(Schema));
@@ -25,7 +26,7 @@ export const actions: Actions = {
   async register({ request }) {
     const form = await superValidate(request, zod(Schema));
     if (!form.valid) {
-      return fail(400, { form });
+      return fail(BAD_REQUEST, { form });
     }
 
     const result = await register(form.data);
@@ -34,9 +35,9 @@ export const actions: Actions = {
         "taken-username": () => setError(form, "username", "Username is taken."),
         "taken-email": () => setError(form, "email", "Email is taken."),
       });
-      return fail(400, { form });
+      return fail(BAD_REQUEST, { form });
     }
 
-    redirect(303, "/login");
+    redirect(SEE_OTHER, "/login");
   },
 };
