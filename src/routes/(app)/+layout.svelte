@@ -14,7 +14,7 @@
 <Head />
 
 <div class="mx-auto flex h-screen max-h-full w-[1000px] max-w-full flex-col pt-32">
-  <main class="grow border-2 border-b-0 border-white bg-zinc-950 p-8 shadow-lg">
+  <main class="grow rounded-sm border-2 border-b-0 border-gray-200 bg-white p-8 shadow-2xl">
     {@render children()}
   </main>
 </div>
