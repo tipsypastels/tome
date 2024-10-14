@@ -2,10 +2,10 @@
   import { page } from "$app/stores";
 
   let title = $page.data.title;
-  let unscoped = $page.data.headTitleAlwaysUnscoped;
+  let unscoped = $page.data.headTitleBaseIgnoreCrumb;
 
   let tomeTitle = $page.data.tome.title;
-  let baseTitle = (!unscoped && $page.data.scopes?.at(-1)?.name) ?? tomeTitle;
+  let baseTitle = (!unscoped && $page.data.crumbs?.at(-1)?.name) ?? tomeTitle;
 </script>
 
 <svelte:head>

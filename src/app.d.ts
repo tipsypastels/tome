@@ -13,8 +13,8 @@ declare global {
       me?: User;
       title?: string;
       controls?: Snippet;
-      scopes?: { name: string; url: string }[];
-      headTitleAlwaysUnscoped?: boolean;
+      crumbs?: { name: string; url: string }[];
+      headTitleBaseIgnoreCrumb?: boolean;
     }
     // interface PageState {}
     // interface Platform {}
