@@ -13,6 +13,9 @@ importers:
 
   .:
     dependencies:
+      '@fortawesome/pro-solid-svg-icons':
+        specifier: ^6.6.0
+        version: 6.6.0
       '@prisma/client':
         specifier: 5.20.0
         version: 5.20.0(prisma@5.20.0)
@@ -86,6 +89,9 @@ importers:
       svelte-check:
         specifier: ^4.0.0
         version: 4.0.4(svelte@5.0.0-next.263)(typescript@5.6.3)
+      svelte-fa:
+        specifier: ^4.0.3
+        version: 4.0.3(svelte@5.0.0-next.263)
       sveltekit-superforms:
         specifier: ^2.19.1
         version: 2.19.1(@sveltejs/kit@2.6.3(@sveltejs/vite-plugin-svelte@4.0.0-next.7(svelte@5.0.0-next.263)(vite@5.4.8(@types/node@22.7.5)))(svelte@5.0.0-next.263)(vite@5.4.8(@types/node@22.7.5)))(@types/json-schema@7.0.15)(svelte@5.0.0-next.263)
@@ -299,6 +305,14 @@ packages:
 
   '@exodus/schemasafe@1.3.0':
     resolution: {integrity: sha512-5Aap/GaRupgNx/feGBwLLTVv8OQFfv3pq2lPRzPg9R+IOBnDgghTGW7l7EuVXOvg5cc/xSAlRW8rBrjIC3Nvqw==}
+
+  '@fortawesome/fontawesome-common-types@6.6.0':
+    resolution: {integrity: sha512-xyX0X9mc0kyz9plIyryrRbl7ngsA9jz77mCZJsUkLl+ZKs0KWObgaEBoSgQiYWAsSmjz/yjl0F++Got0Mdp4Rw==, tarball: https://npm.fontawesome.com/@fortawesome/fontawesome-common-types/-/6.6.0/fontawesome-common-types-6.6.0.tgz}
+    engines: {node: '>=6'}
+
+  '@fortawesome/pro-solid-svg-icons@6.6.0':
+    resolution: {integrity: sha512-IwYuyO+i681arIxOjPUoqRwoHeTqeg6i2s5rY2WbZ1R7PnwavOd1+aPHCJlfU2k8l5LZ+u3hAKlVqu+emQFlZg==, tarball: https://npm.fontawesome.com/@fortawesome/pro-solid-svg-icons/-/6.6.0/pro-solid-svg-icons-6.6.0.tgz}
+    engines: {node: '>=6'}
 
   '@gcornut/valibot-json-schema@0.31.0':
     resolution: {integrity: sha512-3xGptCurm23e7nuPQkdrE5rEs1FeTPHhAUsBuwwqG4/YeZLwJOoYZv+fmsppUEfo5y9lzUwNQrNqLS/q7HMc7g==}
@@ -1775,6 +1789,11 @@ packages:
       svelte:
         optional: true
 
+  svelte-fa@4.0.3:
+    resolution: {integrity: sha512-saZ8yACM0k9Aexey+2NXU1W0MBosU5lBsRgqFCJKM+Taw7d0HyimPaPAjmvY/Xkyi3UwEYL/Sdu1IZJv/p0Flw==}
+    peerDependencies:
+      svelte: ^4.0.0 || ^5.0.0
+
   svelte@5.0.0-next.263:
     resolution: {integrity: sha512-vusQUBK3fIazd8D1uDP/r2y9aHNCKwmsG8rjOFQ5dgx7w/uuHF29tt+onVFlbRgaudlFwpjLNo3OVylrhD6zoQ==}
     engines: {node: '>=18'}
@@ -2173,6 +2192,12 @@ snapshots:
 
   '@exodus/schemasafe@1.3.0':
     optional: true
+
+  '@fortawesome/fontawesome-common-types@6.6.0': {}
+
+  '@fortawesome/pro-solid-svg-icons@6.6.0':
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.6.0
 
   '@gcornut/valibot-json-schema@0.31.0':
     dependencies:
@@ -3601,6 +3626,10 @@ snapshots:
       postcss: 8.4.47
       postcss-scss: 4.0.9(postcss@8.4.47)
     optionalDependencies:
+      svelte: 5.0.0-next.263
+
+  svelte-fa@4.0.3(svelte@5.0.0-next.263):
+    dependencies:
       svelte: 5.0.0-next.263
 
   svelte@5.0.0-next.263:

@@ -1,4 +1,5 @@
 import type { Tome, User } from "@prisma/client";
+import type { Crumb } from "$lib/crumb";
 import type { Snippet } from "svelte";
 
 declare global {
@@ -13,7 +14,7 @@ declare global {
       me?: User;
       title?: string;
       controls?: Snippet;
-      crumbs?: { name: string; url: string }[];
+      crumbs?: Crumb[];
       headTitleBaseIgnoreCrumb?: boolean;
     }
     // interface PageState {}
