@@ -4,7 +4,7 @@ import { superValidate } from "sveltekit-superforms";
 import { zod } from "sveltekit-superforms/adapters";
 import { articleCrumb, wikiCrumb } from "$lib/crumb";
 import { fail, redirect } from "@sveltejs/kit";
-import { BAD_REQUEST, NOT_FOUND, SEE_OTHER } from "$lib/http/status";
+import { BAD_REQUEST, NOT_FOUND, SEE_OTHER } from "$lib/server/http/status";
 import { db } from "$lib/server/db";
 import { articleUrl } from "$lib/url";
 

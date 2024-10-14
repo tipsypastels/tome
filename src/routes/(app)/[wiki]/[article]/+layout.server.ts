@@ -2,7 +2,7 @@ import { db } from "$lib/server/db";
 import { error } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 import { wikiCrumb } from "$lib/crumb";
-import { NOT_FOUND } from "$lib/http/status";
+import { NOT_FOUND } from "$lib/server/http/status";
 
 export const load: LayoutServerLoad = async ({ params, parent }) => {
   const { wiki } = await parent();

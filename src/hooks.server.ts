@@ -1,4 +1,4 @@
-import { SEE_OTHER } from "$lib/http/status";
+import { SEE_OTHER } from "$lib/server/http/status";
 import { db } from "$lib/server/db";
 import { authenticate } from "$lib/server/ops/user/auth";
 import type { Handle } from "@sveltejs/kit";

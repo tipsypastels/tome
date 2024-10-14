@@ -5,7 +5,7 @@ import { zod } from "sveltekit-superforms/adapters";
 import { register } from "$lib/server/ops/user/auth";
 import { caseErr } from "$lib/server/ops/result";
 import { fail, redirect } from "@sveltejs/kit";
-import { BAD_REQUEST, MOVED_TEMPORARILY, SEE_OTHER } from "$lib/http/status";
+import { BAD_REQUEST, MOVED_TEMPORARILY, SEE_OTHER } from "$lib/server/http/status";
 
 const Schema = z.object({
   username: z.string().min(1),

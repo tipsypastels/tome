@@ -1,6 +1,5 @@
 <script lang="ts">
   import { Title } from "$lib/components/layout";
-  import Markdown from "$lib/components/markdown/Markdown.svelte";
   import { articleEditUrl } from "$lib/url";
   import type { PageData } from "./$types";
 
@@ -10,5 +9,3 @@
 <Title />
 
 <a href={articleEditUrl(data.wiki, data.article)}>edit</a>
-
-<Markdown code={data.article.text} />

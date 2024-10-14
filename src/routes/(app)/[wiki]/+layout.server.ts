@@ -2,7 +2,7 @@ import { db } from "$lib/server/db";
 import { error, redirect } from "@sveltejs/kit";
 import type { LayoutServerLoad } from "./$types";
 import { articleUrl } from "$lib/url";
-import { NOT_FOUND, SEE_OTHER } from "$lib/http/status";
+import { NOT_FOUND, SEE_OTHER } from "$lib/server/http/status";
 
 export const load: LayoutServerLoad = async ({ params, locals }) => {
   const { wiki: slug } = params;
