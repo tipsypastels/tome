@@ -1,11 +1,12 @@
 <script lang="ts">
+  import { Head, Container } from "$lib/components/layout";
   import type { ChildrenProps } from "$lib/props";
   import "../../app.css";
-
-  import { Head, Container } from "$lib/components/layout";
 
   let { children }: ChildrenProps = $props();
 </script>
 
 <Head />
-<Container {children} />
+<Container>
+  {@render children()}
+</Container>
