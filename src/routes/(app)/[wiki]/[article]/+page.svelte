@@ -9,3 +9,7 @@
 <Title />
 
 <a href={articleEditUrl(data.wiki, data.article)}>edit</a>
+
+<p>
+  {data.article.text}
+</p>

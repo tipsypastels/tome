@@ -19,10 +19,12 @@
     "db:studio": "prisma studio"
   },
   "dependencies": {
+    "@codemirror/lang-markdown": "^6.3.0",
     "@fortawesome/pro-solid-svg-icons": "^6.6.0",
     "@prisma/client": "5.20.0",
     "bcrypt": "^5.1.1",
     "marked": "^14.1.2",
+    "svelte-codemirror-editor": "^1.4.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
