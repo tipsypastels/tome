@@ -29,7 +29,6 @@ export const actions: Actions = {
     if (!form.valid) {
       return fail(BAD_REQUEST, { form });
     }
-    console.log(form.data);
 
     // TODO: Make an op, history stuff.
     const wiki = await db.wiki.findUnique({ where: { slug: params.wiki } });
