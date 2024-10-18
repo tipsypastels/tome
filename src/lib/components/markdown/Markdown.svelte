@@ -1,15 +1,15 @@
 <script lang="ts">
-  import { lex, type Token, type Tokens } from "./marked";
+  import { lex, type Token, type Tokens } from "./lexer";
 
   interface Props {
     text: string;
   }
 
   let { text }: Props = $props();
-  let tokens = $derived(lex(text));
+  let result = $derived(lex(text));
 </script>
 
-{#snippet token$(token: Token)}
+{#snippet token(token: Token)}
   {#if token.type === "blockquote"}
     blockquote
   {:else if token.type === "br"}
@@ -24,13 +24,13 @@
     <!-- TODO -->
   {:else if token.type === "em"}
     <em>
-      {@render tokens$(token.tokens)}
+      {@render tokens(token.tokens)}
     </em>
   {:else if token.type === "escape"}
     <!-- TODO -->
   {:else if token.type === "heading"}
     <svelte:element this={`h${token.depth}`}>
-      {@render tokens$(token.tokens)}
+      {@render tokens(token.tokens)}
     </svelte:element>
   {:else if token.type === "hr"}
     <!-- TODO -->
@@ -46,13 +46,13 @@
     <!-- TODO -->
   {:else if token.type === "paragraph"}
     <p>
-      {@render tokens$(token.tokens)}
+      {@render tokens(token.tokens)}
     </p>
   {:else if token.type === "space"}
     {""}
   {:else if token.type === "strong"}
     <strong>
-      {@render tokens$(token.tokens)}
+      {@render tokens(token.tokens)}
     </strong>
   {:else if token.type === "table"}
     <!-- TODO -->
@@ -63,14 +63,14 @@
   {/if}
 {/snippet}
 
-{#snippet tokens$(tokens: Tokens | import("marked").Token[] | undefined)}
+{#snippet tokens(tokens: Tokens | import("marked").Token[] | undefined)}
   {#if tokens}
-    {#each tokens as token}
-      {@render token$(token as Token)}
+    {#each tokens as t}
+      {@render token(t as Token)}
     {/each}
   {/if}
 {/snippet}
 
 <article class="prose">
-  {@render tokens$(tokens)}
+  {@render tokens(result.tokens)}
 </article>
