@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { Toc } from "../generic";
   import { lex, type Token, type Tokens } from "./lexer";
 
   interface Props {
@@ -29,6 +30,12 @@
   {:else if token.type === "escape"}
     <!-- TODO -->
   {:else if token.type === "heading"}
+    {#if token.isFirstHeadingSeen}
+      <div class="not-prose">
+        <Toc tree={result.toc} />
+      </div>
+    {/if}
+
     <svelte:element this={`h${token.depth}`}>
       {@render tokens(token.tokens)}
     </svelte:element>
