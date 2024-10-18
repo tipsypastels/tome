@@ -10,9 +10,9 @@ export interface LexResult {
   toc: TocTree;
 }
 
-export function lex(text: string): LexResult {
+export function lex(scope: string, text: string): LexResult {
   const toc = new TocTree();
-  const marked = new Marked().use(tocExtension(toc));
+  const marked = new Marked().use(tocExtension(scope, toc));
   const tokens = marked.lexer(text) as Tokens;
 
   if (marked.defaults.walkTokens) {

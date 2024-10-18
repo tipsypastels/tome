@@ -1,6 +1,7 @@
 export interface TocNode {
   depth: number;
   text: string;
+  slug: string;
   children: TocNode[];
 }
 

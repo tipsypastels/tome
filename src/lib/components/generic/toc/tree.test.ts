@@ -4,7 +4,7 @@ import { TocTree, type TocNode } from "./tree";
 type NewNode = Omit<TocNode, "children">;
 
 function newNode(depth: number, text: string): NewNode {
-  return { depth, text };
+  return { depth, text, slug: "" };
 }
 
 function withChildren(node: NewNode, children: TocNode[]): TocNode {

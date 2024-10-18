@@ -12,7 +12,9 @@
 
 {#snippet node(node: TocNode, isEven: boolean)}
   <li>
-    {node.text}
+    <a href="#{node.slug}">
+      {node.text}
+    </a>
     {@render children(node.children, !isEven)}
   </li>
 {/snippet}

@@ -11,4 +11,4 @@
 
 <a href={articleEditUrl(data.wiki, data.article)}>edit</a>
 
-<Markdown text={data.article.text} />
+<Markdown scope="article" text={data.article.text} />

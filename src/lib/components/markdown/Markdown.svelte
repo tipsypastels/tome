@@ -3,11 +3,12 @@
   import { lex, type Token, type Tokens } from "./lexer";
 
   interface Props {
+    scope: string;
     text: string;
   }
 
-  let { text }: Props = $props();
-  let result = $derived(lex(text));
+  let { scope, text }: Props = $props();
+  let result = $derived(lex(scope, text));
 </script>
 
 {#snippet token(token: Token)}
@@ -36,7 +37,7 @@
       </div>
     {/if}
 
-    <svelte:element this={`h${token.depth}`}>
+    <svelte:element this={`h${token.depth}`} id={token.slug}>
       {@render tokens(token.tokens)}
     </svelte:element>
   {:else if token.type === "hr"}
