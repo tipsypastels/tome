@@ -1,5 +1,6 @@
 <script lang="ts">
   import { Title } from "$lib/components/layout";
+  import { Markdown } from "$lib/components/markdown";
   import { articleEditUrl } from "$lib/url";
   import type { PageData } from "./$types";
 
@@ -10,6 +11,4 @@
 
 <a href={articleEditUrl(data.wiki, data.article)}>edit</a>
 
-<p>
-  {data.article.text}
-</p>
+<Markdown text={data.article.text} />
