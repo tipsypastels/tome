@@ -38,7 +38,9 @@
     {/if}
 
     <svelte:element this={`h${token.depth}`} id={token.slug}>
-      {@render tokens(token.tokens)}
+      <a class="not-prose" href="#{token.slug}">
+        {@render tokens(token.tokens)}
+      </a>
     </svelte:element>
   {:else if token.type === "hr"}
     <!-- TODO -->
