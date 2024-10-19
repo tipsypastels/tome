@@ -1,5 +1,7 @@
 <script lang="ts">
   import { TocTree, type TocNode } from "./tree";
+  import Fa from "svelte-fa";
+  import { faCaretUp, faCaretDown } from "@fortawesome/pro-solid-svg-icons";
 
   interface Props {
     tree: TocTree;
@@ -8,31 +10,39 @@
   }
 
   let { tree, label = "Contents", open = $bindable(true) }: Props = $props();
+  let icon = $derived(open ? faCaretDown : faCaretUp);
 </script>
 
-{#snippet node(node: TocNode, isEven: boolean)}
+<details bind:open class="relative w-fit min-w-[250px] border-4 border-current p-4">
+  <summary class="flex cursor-pointer select-none list-none items-center font-bold">
+    <div class="grow text-red-600">
+      {label}
+    </div>
+
+    <div>
+      <Fa {icon} />
+    </div>
+  </summary>
+
+  <ol class="mt-2">
+    {#each tree.roots as node, index}
+      {@render li(node)}
+    {/each}
+  </ol>
+</details>
+
+{#snippet li(node: TocNode)}
   <li>
-    <a href="#{node.slug}">
+    <a href="#{node.slug}" class="underline">
       {node.text}
     </a>
-    {@render children(node.children, !isEven)}
+
+    {#if node.children.length > 0}
+      <ol class="pl-2">
+        {#each node.children as child}
+          {@render li(child)}
+        {/each}
+      </ol>
+    {/if}
   </li>
 {/snippet}
-
-{#snippet children(nodes: TocNode[], isEven: boolean)}
-  <ol class="list-inside pl-4" class:list-disc={isEven} class:list-[circle]={!isEven}>
-    {#each nodes as n}
-      {@render node(n, isEven)}
-    {/each}
-  </ol>
-{/snippet}
-
-<nav class="w-fit border-2 border-gray-200 p-4">
-  <h2>{label}</h2>
-
-  <ol class="list-inside list-decimal">
-    {#each tree.roots as n}
-      {@render node(n, false)}
-    {/each}
-  </ol>
-</nav>
