@@ -31,7 +31,7 @@
   {:else if token.type === "escape"}
     <!-- TODO -->
   {:else if token.type === "heading"}
-    {#if token.isFirstHeadingSeen}
+    {#if token.first}
       <div class="not-prose">
         <Toc tree={result.toc} />
       </div>

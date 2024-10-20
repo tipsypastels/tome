@@ -1,6 +1,7 @@
 import { TocTree } from "$lib/components/generic";
 import { Marked, type MarkedToken } from "marked";
 import { tocExtension } from "./toc";
+import { headingExtension } from "./heading";
 
 export type Token = MarkedToken;
 export type Tokens = Token[];
@@ -12,7 +13,7 @@ export interface LexResult {
 
 export function lex(scope: string, text: string): LexResult {
   const toc = new TocTree();
-  const marked = new Marked().use(tocExtension(scope, toc));
+  const marked = new Marked().use(headingExtension(scope), tocExtension(toc));
   const tokens = marked.lexer(text) as Tokens;
 
   if (marked.defaults.walkTokens) {
