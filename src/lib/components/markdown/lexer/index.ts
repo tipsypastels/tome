@@ -1,4 +1,4 @@
-import { TocTree } from "$lib/components/generic";
+import { TocTree } from "$lib/components/toc";
 import { Marked, type MarkedToken } from "marked";
 import { tocExtension } from "./toc";
 import { headingExtension } from "./heading";

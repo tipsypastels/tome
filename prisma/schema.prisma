@@ -78,6 +78,38 @@ enum CommentAttacheKind {
   ARTICLE
 }
 
+model Infobox {
+  id     String @id @default(uuid())
+  slug   String
+  name   String
+  schema Json
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  wiki   Wiki   @relation(fields: [wikiId], references: [id])
+  wikiId String
+
+  revisions InfoboxRevision[]
+
+  @@unique([slug, wikiId])
+}
+
+model InfoboxRevision {
+  id     Int    @id @default(autoincrement())
+  slug   String
+  name   String
+  schema Json
+
+  reasonChangedFrom String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  infobox   Infobox @relation(fields: [infoboxId], references: [id])
+  infoboxId String
+}
+
 model Role {
   id   String   @id @default(uuid())
   slug String
@@ -167,7 +199,9 @@ model Wiki {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  articles Article[]
-  bans     Ban[]
-  roles    Role[]
+  articles  Article[]
+  infoboxes Infobox[]
+
+  bans  Ban[]
+  roles Role[]
 }

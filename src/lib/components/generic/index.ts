@@ -1,1 +1,1 @@
-export * from "./toc";
+export { default as Details } from "./Details.svelte";

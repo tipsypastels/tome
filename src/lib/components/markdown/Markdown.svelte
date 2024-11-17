@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Toc } from "../generic";
+  import { Toc } from "../toc";
   import { lex, type Token, type Tokens } from "./lexer";
 
   interface Props {

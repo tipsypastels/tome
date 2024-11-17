@@ -1,4 +1,4 @@
-import type { TocTree } from "$lib/components/generic";
+import type { TocTree } from "$lib/components/toc";
 import type { MarkedExtension } from "marked";
 
 export function tocExtension(tree: TocTree): MarkedExtension {
